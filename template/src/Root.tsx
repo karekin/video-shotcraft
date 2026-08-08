@@ -1,15 +1,21 @@
 import { Composition } from 'remotion';
-import { AiflMain, AIFL_TOTAL } from './aifl/Main';
+import { VIDEO_COMPOSITIONS } from './video-styles/registry';
 
 export const Root: React.FC = () => {
   return (
-    <Composition
-      id="AiflPromo"
-      component={AiflMain}
-      durationInFrames={AIFL_TOTAL}
-      fps={30}
-      width={1920}
-      height={1080}
-    />
+    <>
+      {VIDEO_COMPOSITIONS.map((route) => (
+        <Composition
+          key={route.id}
+          id={route.id}
+          component={route.component}
+          durationInFrames={route.durationInFrames}
+          fps={route.fps}
+          width={route.width}
+          height={route.height}
+          defaultProps={route.defaultProps}
+        />
+      ))}
+    </>
   );
 };
