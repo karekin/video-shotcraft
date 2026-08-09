@@ -20,7 +20,7 @@ const readMacOsKeychain = () => {
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const apiKey = process.env.ZHIPU_API_KEY ?? process.env.ZAI_API_KEY ?? readMacOsKeychain();
 const voice = process.env.GLM_TTS_VOICE ?? 'xiaochen';
-const speed = Number(process.env.GLM_TTS_SPEED ?? '0.92');
+const speed = Number(process.env.GLM_TTS_SPEED ?? '1.12');
 const manifestPath = resolve(root, 'src/video-styles/business-insight/narration/segments.json');
 const outputDir = resolve(root, 'public/audio/narration');
 const fps = 30;

@@ -59,7 +59,7 @@ export const VIDEO_COMPOSITIONS: readonly VideoCompositionRoute[] = [
     fps: 30,
     width: 1920,
     height: 1080,
-    defaultProps: { narration: true, bgm: false },
+    defaultProps: { narration: true, bgm: true },
   },
   {
     id: 'BusinessInsightAtlas',

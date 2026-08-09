@@ -1,4 +1,4 @@
-import { AbsoluteFill, Sequence } from 'remotion';
+import { AbsoluteFill, Audio, Sequence, staticFile } from 'remotion';
 import musinsa from './data/musinsa.json';
 import { CompareMatrix } from './chartlib/CompareMatrix';
 import { BarRank } from './chartlib/BarRank';
@@ -36,8 +36,9 @@ export const BUSINESS_INSIGHT_SHOTS = {
 
 export const BUSINESS_INSIGHT_TOTAL = BUSINESS_INSIGHT_SHOTS.conclusion.from + BUSINESS_INSIGHT_SHOTS.conclusion.duration;
 
-export const BusinessInsightMain: React.FC<{ narration?: boolean; bgm?: boolean }> = ({ narration = true }) => (
+export const BusinessInsightMain: React.FC<{ narration?: boolean; bgm?: boolean }> = ({ narration = true, bgm = true }) => (
   <AbsoluteFill style={{ background: `radial-gradient(circle at 55% 10%, #1A2230 0%, ${INSIGHT_TOKENS.bg} 48%)`, overflow: 'hidden' }}>
+    {bgm && <Audio src={staticFile('audio/bgm-tech-house.mp3')} volume={0.055} />}
     <Sequence from={BUSINESS_INSIGHT_SHOTS.thesis.from} durationInFrames={BUSINESS_INSIGHT_SHOTS.thesis.duration}>
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 170px' }}>
         <div style={{ color: INSIGHT_TOKENS.amber, fontFamily: INSIGHT_FONT.mono, letterSpacing: '0.22em', fontSize: 22, marginBottom: 28 }}>BUSINESS INSIGHT / EP.00</div>

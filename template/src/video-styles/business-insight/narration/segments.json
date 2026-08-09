@@ -1,80 +1,80 @@
 [
   {
     "from": 0,
-    "duration": 186,
-    "audioDurationInFrames": 180,
+    "duration": 154,
+    "audioDurationInFrames": 148,
     "text": "当每一次消费都留下信号，品牌增长就不再只靠下一次爆款。",
     "source": "样片文案",
     "audio": "business-insight-01.wav"
   },
   {
-    "from": 186,
-    "duration": 126,
-    "audioDurationInFrames": 120,
+    "from": 154,
+    "duration": 105,
+    "audioDurationInFrames": 99,
     "text": "先用一个数字立住问题，但不让大数字替代证据。",
     "source": "数据口径",
     "audio": "business-insight-02.wav"
   },
   {
-    "from": 312,
-    "duration": 231,
-    "audioDurationInFrames": 225,
+    "from": 259,
+    "duration": 192,
+    "audioDurationInFrames": 186,
     "text": "关键在于：把平台数据，连续回流到商品、采购、库存与渠道决策。",
     "source": "机制说明",
     "audio": "business-insight-03.wav"
   },
   {
-    "from": 543,
-    "duration": 143,
-    "audioDurationInFrames": 137,
+    "from": 451,
+    "duration": 120,
+    "audioDurationInFrames": 114,
     "text": "把判断拆成变量，才能知道增长究竟从哪里来。",
     "source": "因果框架",
     "audio": "business-insight-04.wav"
   },
   {
-    "from": 686,
-    "duration": 124,
-    "audioDurationInFrames": 118,
+    "from": 571,
+    "duration": 103,
+    "audioDurationInFrames": 97,
     "text": "每一步都要能留下下一轮决策需要的反馈。",
     "source": "流程说明",
     "audio": "business-insight-05.wav"
   },
   {
-    "from": 810,
-    "duration": 197,
-    "audioDurationInFrames": 191,
+    "from": 674,
+    "duration": 162,
+    "audioDurationInFrames": 156,
     "text": "数字不是结论本身。先标明来源和口径，才谈趋势与判断。",
     "source": "数据口径",
     "audio": "business-insight-06.wav"
   },
   {
-    "from": 1007,
-    "duration": 161,
-    "audioDurationInFrames": 155,
+    "from": 836,
+    "duration": 133,
+    "audioDurationInFrames": 127,
     "text": "排序只突出一个主指标；其他变量让位于更重要的判断。",
     "source": "样片框架",
     "audio": "business-insight-07.wav"
   },
   {
-    "from": 1168,
-    "duration": 157,
-    "audioDurationInFrames": 151,
+    "from": 969,
+    "duration": 129,
+    "audioDurationInFrames": 123,
     "text": "份额结构能够告诉我们：下一轮信息应该从哪里补齐。",
     "source": "样片框架",
     "audio": "business-insight-08.wav"
   },
   {
-    "from": 1325,
-    "duration": 223,
-    "audioDurationInFrames": 217,
+    "from": 1098,
+    "duration": 185,
+    "audioDurationInFrames": 179,
     "text": "不同模式的差异，不在谁的表格更漂亮，而在谁能把反馈变成下一次行动。",
     "source": "比较框架",
     "audio": "business-insight-09.wav"
   },
   {
-    "from": 1548,
-    "duration": 217,
-    "audioDurationInFrames": 199,
+    "from": 1283,
+    "duration": 181,
+    "audioDurationInFrames": 163,
     "text": "真正的增长，不是拥有更多数据，而是让每一次决策都更接近用户。",
     "source": "样片结论",
     "audio": "business-insight-10.wav"
