@@ -7,6 +7,7 @@ export type NarrationSegment = {
   text: string;
   source: string;
   audio?: string;
+  audioDurationInFrames?: number;
 };
 
 export const NarrationTrack: React.FC<{ segments: readonly NarrationSegment[]; enabled?: boolean }> = ({ segments, enabled = true }) => (

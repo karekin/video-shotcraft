@@ -13,22 +13,28 @@ import { NarrationTrack, type NarrationSegment } from './narration/NarrationTrac
 import { INSIGHT_FONT, INSIGHT_TOKENS } from './tokens';
 import narration from './narration/segments.json';
 
+const NARRATION: readonly NarrationSegment[] = narration;
+
+const shotAt = (index: number) => {
+  const segment = NARRATION[index];
+  if (!segment) throw new Error(`Missing business-insight narration segment ${index}.`);
+  return { from: segment.from, duration: segment.duration };
+};
+
 export const BUSINESS_INSIGHT_SHOTS = {
-  thesis: { from: 0, duration: 150 },
-  scale: { from: 150, duration: 150 },
-  flywheel: { from: 300, duration: 240 },
-  formula: { from: 540, duration: 150 },
-  flow: { from: 690, duration: 210 },
-  evidence: { from: 900, duration: 240 },
-  ranking: { from: 1140, duration: 210 },
-  share: { from: 1350, duration: 180 },
-  comparison: { from: 1530, duration: 240 },
-  conclusion: { from: 1770, duration: 150 },
+  thesis: shotAt(0),
+  scale: shotAt(1),
+  flywheel: shotAt(2),
+  formula: shotAt(3),
+  flow: shotAt(4),
+  evidence: shotAt(5),
+  ranking: shotAt(6),
+  share: shotAt(7),
+  comparison: shotAt(8),
+  conclusion: shotAt(9),
 } as const;
 
-export const BUSINESS_INSIGHT_TOTAL = 1920;
-
-const NARRATION: readonly NarrationSegment[] = narration;
+export const BUSINESS_INSIGHT_TOTAL = BUSINESS_INSIGHT_SHOTS.conclusion.from + BUSINESS_INSIGHT_SHOTS.conclusion.duration;
 
 export const BusinessInsightMain: React.FC<{ narration?: boolean; bgm?: boolean }> = ({ narration = true }) => (
   <AbsoluteFill style={{ background: `radial-gradient(circle at 55% 10%, #1A2230 0%, ${INSIGHT_TOKENS.bg} 48%)`, overflow: 'hidden' }}>
