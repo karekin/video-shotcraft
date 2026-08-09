@@ -78,7 +78,7 @@ jobs:
           print(f'all previews present ({len(lib["cards"])} cards checked)')
           EOF
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
