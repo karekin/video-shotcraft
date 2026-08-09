@@ -1,0 +1,26 @@
+name: Repository policy
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate repository baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in README.md NOTICE.md .github/CODEOWNERS; do
+            test -f "$path" || { echo "Missing required file: $path"; exit 1; }
+          done
+          blocked="$(git ls-files | grep -E '\.(pem|key|p12|jks)$' || true)"
+          test -z "$blocked" || { echo "Blocked key material:"; echo "$blocked"; exit 1; }
+          oversized="$(git ls-tree -r -l HEAD | awk '$4 >= 99000000 {print $4, $5}')"
+          test -z "$oversized" || { echo "Files too close to GitHub's hard limit:"; echo "$oversized"; exit 1; }
