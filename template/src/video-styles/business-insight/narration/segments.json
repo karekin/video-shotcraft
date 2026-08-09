@@ -1,0 +1,82 @@
+[
+  {
+    "from": 0,
+    "duration": 219,
+    "audioDurationInFrames": 213,
+    "text": "MUSINSA STANDARD 的特殊之处，不是一件便宜的基础款，而是把时尚平台变成了自己的需求感知器。",
+    "source": "研究结论",
+    "audio": "business-insight-01.wav"
+  },
+  {
+    "from": 219,
+    "duration": 271,
+    "audioDurationInFrames": 265,
+    "text": "二零二五年，MUSINSA 合并收入达到一万四千六百七十九亿韩元，同比增长百分之十八点一。但这不是 STANDARD 单独的收入。",
+    "source": "集团财务口径",
+    "audio": "business-insight-02.wav"
+  },
+  {
+    "from": 490,
+    "duration": 300,
+    "audioDurationInFrames": 294,
+    "text": "它的飞轮是：平台数据进入 MD 企划，再连接采购、库存优化、全渠道销售，最后回流为更多需求信号。",
+    "source": "商业模式拆解",
+    "audio": "business-insight-03.wav"
+  },
+  {
+    "from": 790,
+    "duration": 275,
+    "audioDurationInFrames": 269,
+    "text": "所以，它既不是韩国版优衣库，也不是 SHEIN 式的小单快反；更准确地说，它在把平台、PB 和履约内化成一个经营系统。",
+    "source": "研究定义",
+    "audio": "business-insight-04.wav"
+  },
+  {
+    "from": 1065,
+    "duration": 298,
+    "audioDurationInFrames": 292,
+    "text": "公开招聘已经显示，这条链路会把销售计划、库存周转和区域需求送入预测，再计算生产量、生产地和仓店调拨。",
+    "source": "MUSINSA Careers",
+    "audio": "business-insight-05.wav"
+  },
+  {
+    "from": 1363,
+    "duration": 381,
+    "audioDurationInFrames": 375,
+    "text": "但库存是这套模式的试金石。集团库存周转率在二零二四年约一点七次，二零二五年上半年回落到一点四次。注意，这不是 STANDARD 单独口径。",
+    "source": "集团库存口径",
+    "audio": "business-insight-06.wav"
+  },
+  {
+    "from": 1744,
+    "duration": 263,
+    "audioDurationInFrames": 257,
+    "text": "线下扩张会让库存网络更复杂：门店从二零二五年二月的十九家，增至年末三十四家；二零二六年目标约六十家。",
+    "source": "MUSINSA 官方公告",
+    "audio": "business-insight-07.wav"
+  },
+  {
+    "from": 2007,
+    "duration": 331,
+    "audioDurationInFrames": 325,
+    "text": "二零二六年一季度，产品销售已占集团收入百分之三十二点四。但产品销售还包含其他自营业务，不能直接当作 STANDARD 的品牌规模。",
+    "source": "集团财务口径",
+    "audio": "business-insight-08.wav"
+  },
+  {
+    "from": 2338,
+    "duration": 306,
+    "audioDurationInFrames": 300,
+    "text": "与 SHEIN 相比，MUSINSA 没有公开一百到两百件的固定首单机制；与优衣库相比，它的独特优势是把平台需求信息延伸到库存配置。",
+    "source": "横向比较",
+    "audio": "business-insight-09.wav"
+  },
+  {
+    "from": 2644,
+    "duration": 388,
+    "audioDurationInFrames": 370,
+    "text": "因此，判断这套模式是否真正成立，不能只看 GMV。更关键的是三项尚未公开的指标：预测准确率、真实库存周转和季末实际毛利率。",
+    "source": "研究结论",
+    "audio": "business-insight-10.wav"
+  }
+]

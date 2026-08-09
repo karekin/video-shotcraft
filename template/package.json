@@ -1,0 +1,32 @@
+{
+  "name": "promo-template",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "check": "tsc --noEmit",
+    "list": "remotion compositions src/index.ts",
+    "render": "remotion render src/index.ts AiflPromo out/promo.mp4",
+    "still": "remotion still src/index.ts AiflPromo",
+    "render:software-intro": "remotion render src/index.ts AiflPromo out/software-intro.mp4",
+    "render:business-insight": "remotion render src/index.ts BusinessInsightsMusinsa out/business-insight.mp4",
+    "render:tech-explainer": "remotion render src/index.ts TechExplainerCodexAmazonAPlus out/tech-explainer.mp4",
+    "render:musinsa-standard": "remotion render src/index.ts BusinessInsightsMusinsa out/musinsa-standard.mp4",
+    "still:business-insight": "remotion still src/index.ts BusinessInsightsMusinsa",
+    "generate:business-insight-narration": "node scripts/generate-glm-tts.mjs",
+    "sync:business-insight-narration": "node scripts/generate-glm-tts.mjs --sync-only",
+    "repair:business-insight-narration": "node scripts/generate-glm-tts.mjs --sync-only --trim-glm-lead-in",
+    "render:business-insight-atlas": "remotion render src/index.ts BusinessInsightAtlas out/business-insight-atlas.mp4 --crf=18 --concurrency=2",
+    "still:business-insight-atlas": "remotion still src/index.ts BusinessInsightAtlas"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "typescript": "^6.0.3"
+  }
+}

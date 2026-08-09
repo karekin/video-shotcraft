@@ -1,0 +1,57 @@
+{
+  "title": "MUSINSA STANDARD：平台如何把数据变成供应链",
+  "subtitle": "商业模式拆解 · 从需求感知到库存配置",
+  "flywheel": {
+    "nodes": ["平台数据", "MD企划", "灵活采购", "库存优化", "全渠道", "更多数据"]
+  },
+  "turnover": {
+    "series": [1.5, 1.6, 1.7, 1.4],
+    "xLabels": ["2022", "2023", "2024", "2025 H1"],
+    "label": "集团库存周转率（次）",
+    "source": "研究稿引用的公开财报分析；2022–2025 H1",
+    "caveat": "集团口径，含其他自营/PB业务，不能等同于 STANDARD。"
+  },
+  "scale": {
+    "value": "1.4679",
+    "suffix": "万亿韩元",
+    "label": "2025 年 MUSINSA 合并收入",
+    "delta": "同比 +18.1%"
+  },
+  "formula": {
+    "tokens": ["平台数据", "×", "自有品牌", "×", "供应链配置", "=", "经营系统"]
+  },
+  "flow": {
+    "steps": [
+      { "id": "signal", "label": "需求信号", "detail": "搜索、浏览、交易" },
+      { "id": "md", "label": "MD企划", "detail": "品类、价格、SKU" },
+      { "id": "sourcing", "label": "供应路径", "detail": "Full Purchase / FOB / CMT" },
+      { "id": "forecast", "label": "预测配置", "detail": "生产量、仓店调拨" },
+      { "id": "feedback", "label": "销售回流", "detail": "缺货、滞销、退货" }
+    ]
+  },
+  "ranking": {
+    "title": "线下扩张：门店数持续增加",
+    "items": [
+      { "label": "2025 年 2 月", "value": 19 },
+      { "label": "2025 年末", "value": 34, "accent": true },
+      { "label": "2026 年末目标", "value": 60, "annotation": "目标" }
+    ]
+  },
+  "share": {
+    "title": "2026 Q1 集团收入构成：产品销售占比",
+    "segments": [
+      { "label": "产品销售", "value": 32.4 },
+      { "label": "其他业务", "value": 67.6 }
+    ]
+  },
+  "comparison": {
+    "columns": ["MUSINSA STANDARD", "SHEIN", "优衣库"],
+    "rows": ["需求捕捉", "首单逻辑", "第一性能力"],
+    "cells": [
+      ["平台行为与区域数据", "实时线上反馈", "门店与电商销售"],
+      ["阈值未披露；预测驱动", "100–200 件测试", "规模化计划生产"],
+      ["需求到库存的配置", "小批量降低试错", "核心款规模与制造"]
+    ]
+  },
+  "conclusion": "真正的护城河，不是一件基础款，\n而是把需求信号转成产量、库存与调拨的能力。"
+}

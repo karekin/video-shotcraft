@@ -1,0 +1,12 @@
+import { useCurrentFrame } from 'remotion';
+import { INSIGHT_FONT, INSIGHT_TOKENS } from '../tokens';
+import { reveal } from './chart-utils';
+
+export type RadialTreeNode = { id: string; label: string; parent?: string; accent?: boolean };
+export type RadialTreeProps = { title: string; nodes: RadialTreeNode[]; durationInFrames: number };
+
+/** A compact relationship hierarchy for ownership, organization, or supplier-family structures. */
+export const RadialTree: React.FC<RadialTreeProps> = ({ title, nodes, durationInFrames: _durationInFrames }) => {
+  const frame = useCurrentFrame(); const root = nodes.find((node) => !node.parent); const depthOf = (node: RadialTreeNode) => { let depth = 0; let current = node; while (current.parent) { depth += 1; current = nodes.find((candidate) => candidate.id === current.parent) ?? { ...current, parent: undefined }; } return depth; }; const depths = nodes.map(depthOf); const maxDepth = Math.max(...depths, 1); const position = (node: RadialTreeNode) => { const depth = depthOf(node); const peers = nodes.filter((candidate) => depthOf(candidate) === depth); const order = peers.findIndex((candidate) => candidate.id === node.id); const angle = depth ? -Math.PI / 2 + order / Math.max(peers.length, 1) * Math.PI * 2 : 0; const radius = depth / maxDepth * 250; return { x: 750 + radius * Math.cos(angle), y: 395 + radius * Math.sin(angle), depth }; };
+  return <svg viewBox="0 0 1500 720" style={{ width: 1500, height: 720 }}><text x="90" y="58" fill={INSIGHT_TOKENS.text} fontFamily={INSIGHT_FONT.serif} fontSize="48">{title}</text>{nodes.filter((node) => node.parent).map((node) => { const from = position(nodes.find((candidate) => candidate.id === node.parent)!); const to = position(node); return <line key={node.id} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={INSIGHT_TOKENS.line} strokeWidth="3" />; })}{nodes.map((node, index) => { const p = position(node); const progress = reveal(frame, 8 + p.depth * 14 + index * 3, 16); return <g key={node.id} opacity={progress}><circle cx={p.x} cy={p.y} r={node === root ? 48 : 31} fill={node.accent ? INSIGHT_TOKENS.amber : INSIGHT_TOKENS.surfaceElevated} stroke={node.accent ? INSIGHT_TOKENS.amberSoft : INSIGHT_TOKENS.blue} strokeWidth="3" /><text x={p.x} y={p.y + (node === root ? 7 : 5)} textAnchor="middle" fill={node.accent ? INSIGHT_TOKENS.bg : INSIGHT_TOKENS.text} fontFamily={INSIGHT_FONT.sans} fontSize={node === root ? 20 : 16}>{node.label}</text></g>; })}</svg>;
+};
