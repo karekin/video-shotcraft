@@ -47,7 +47,7 @@ const SFX: { from: number; src: string; volume: number }[] = [
   { from: 1270, src: 'transition-soft.mp3', volume: 0.35 },
 ];
 
-export const ToushiMain: React.FC<{ bgm?: boolean; sfx?: boolean }> = ({ bgm = true, sfx = false }) => {
+export const ToushiMain: React.FC<{ bgm?: boolean; sfx?: boolean }> = ({ bgm = false, sfx = false }) => {
   return (
     <AbsoluteFill style={{ background: T.bg }}>
       <Sequence from={TOUSHI_SHOTS.open.from} durationInFrames={TOUSHI_SHOTS.open.duration} name="S1 片头">

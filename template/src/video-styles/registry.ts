@@ -47,7 +47,7 @@ export const VIDEO_COMPOSITIONS: readonly VideoCompositionRoute[] = [
     fps: 30,
     width: 1920,
     height: 1080,
-    defaultProps: { bgm: true, sfx: false },
+    defaultProps: { bgm: false, sfx: false },
   },
   {
     id: 'BusinessInsightsMusinsa',
