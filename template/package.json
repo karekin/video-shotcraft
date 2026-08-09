@@ -11,6 +11,7 @@
     "still:business-insight": "remotion still src/index.ts BusinessInsightsMusinsa",
     "generate:business-insight-narration": "node scripts/generate-glm-tts.mjs",
     "sync:business-insight-narration": "node scripts/generate-glm-tts.mjs --sync-only",
+    "repair:business-insight-narration": "node scripts/generate-glm-tts.mjs --sync-only --trim-glm-lead-in",
     "render:business-insight-atlas": "remotion render src/index.ts BusinessInsightAtlas out/business-insight-atlas.mp4 --crf=18 --concurrency=2",
     "still:business-insight-atlas": "remotion still src/index.ts BusinessInsightAtlas"
   },

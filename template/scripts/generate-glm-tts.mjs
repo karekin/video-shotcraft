@@ -27,14 +27,20 @@ const fps = 30;
 const handoffFrames = 6;
 const finalHoldFrames = 18;
 const syncOnly = process.argv.includes('--sync-only');
+const trimGlmLeadIn = process.argv.includes('--trim-glm-lead-in');
+const glmLeadInSeconds = 1.808;
 
-const getWavDurationInFrames = (audio, index) => {
+const parseWav = (audio, index) => {
   if (audio.toString('ascii', 0, 4) !== 'RIFF' || audio.toString('ascii', 8, 12) !== 'WAVE') {
     throw new Error(`GLM-TTS returned an invalid WAV file for segment ${index + 1}.`);
   }
 
   let offset = 12;
   let byteRate;
+  let sampleRate;
+  let blockAlign;
+  let fmtChunk;
+  let dataOffset;
   let dataLength;
   while (offset + 8 <= audio.length) {
     const chunkId = audio.toString('ascii', offset, offset + 4);
@@ -42,16 +48,49 @@ const getWavDurationInFrames = (audio, index) => {
     const chunkDataOffset = offset + 8;
     if (chunkDataOffset + chunkLength > audio.length) break;
 
-    if (chunkId === 'fmt ' && chunkLength >= 12) byteRate = audio.readUInt32LE(chunkDataOffset + 8);
+    if (chunkId === 'fmt ' && chunkLength >= 16) {
+      fmtChunk = audio.subarray(chunkDataOffset, chunkDataOffset + chunkLength);
+      sampleRate = audio.readUInt32LE(chunkDataOffset + 4);
+      byteRate = audio.readUInt32LE(chunkDataOffset + 8);
+      blockAlign = audio.readUInt16LE(chunkDataOffset + 12);
+    }
     if (chunkId === 'data') {
+      dataOffset = chunkDataOffset;
       dataLength = chunkLength;
       break;
     }
     offset = chunkDataOffset + chunkLength + (chunkLength % 2);
   }
 
-  if (!byteRate || !dataLength) throw new Error(`GLM-TTS returned an empty WAV file for segment ${index + 1}.`);
-  return Math.ceil((dataLength / byteRate) * fps);
+  if (!fmtChunk || !sampleRate || !byteRate || !blockAlign || !dataOffset || !dataLength) {
+    throw new Error(`GLM-TTS returned an empty WAV file for segment ${index + 1}.`);
+  }
+  return { fmtChunk, sampleRate, byteRate, blockAlign, dataOffset, dataLength };
+};
+
+const getWavDurationInFrames = (audio, index) => {
+  const wav = parseWav(audio, index);
+  return Math.ceil((wav.dataLength / wav.byteRate) * fps);
+};
+
+const stripGlmLeadIn = (audio, index) => {
+  const wav = parseWav(audio, index);
+  const trimBytes = Math.min(wav.dataLength, Math.round(wav.sampleRate * glmLeadInSeconds) * wav.blockAlign);
+  const data = audio.subarray(wav.dataOffset + trimBytes, wav.dataOffset + wav.dataLength);
+  const fmtPadding = wav.fmtChunk.length % 2;
+  const dataPadding = data.length % 2;
+  const dataChunkOffset = 20 + wav.fmtChunk.length + fmtPadding;
+  const output = Buffer.alloc(dataChunkOffset + 8 + data.length + dataPadding);
+  output.write('RIFF', 0);
+  output.writeUInt32LE(output.length - 8, 4);
+  output.write('WAVE', 8);
+  output.write('fmt ', 12);
+  output.writeUInt32LE(wav.fmtChunk.length, 16);
+  wav.fmtChunk.copy(output, 20);
+  output.write('data', dataChunkOffset);
+  output.writeUInt32LE(data.length, dataChunkOffset + 4);
+  data.copy(output, dataChunkOffset + 8);
+  return output;
 };
 
 const segments = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -59,7 +98,9 @@ const generatedSegments = [];
 
 if (syncOnly) {
   for (const [index, segment] of segments.entries()) {
-    const audio = await readFile(resolve(outputDir, segment.audio));
+    const originalAudio = await readFile(resolve(outputDir, segment.audio));
+    const audio = trimGlmLeadIn ? stripGlmLeadIn(originalAudio, index) : originalAudio;
+    if (trimGlmLeadIn) await writeFile(resolve(outputDir, segment.audio), audio);
     generatedSegments.push({ ...segment, audioDurationInFrames: getWavDurationInFrames(audio, index) });
   }
 } else {
@@ -74,7 +115,7 @@ if (syncOnly) {
       body: JSON.stringify({ model: 'glm-tts', input: segment.text, voice, speed, volume: 1, response_format: 'wav' }),
     });
     if (!response.ok) throw new Error(`GLM-TTS failed for segment ${index + 1}: HTTP ${response.status}`);
-    const audio = Buffer.from(await response.arrayBuffer());
+    const audio = stripGlmLeadIn(Buffer.from(await response.arrayBuffer()), index);
     await writeFile(resolve(outputDir, segment.audio), audio);
     generatedSegments.push({ ...segment, audioDurationInFrames: getWavDurationInFrames(audio, index) });
     console.log(`Generated ${segment.audio}`);
