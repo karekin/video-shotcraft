@@ -20,7 +20,7 @@
     "still:business-insight-atlas": "remotion still src/index.ts BusinessInsightAtlas"
   },
   "dependencies": {
-    "@remotion/cli": "4.0.484",
+    "@remotion/cli": "4.0.540",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "remotion": "4.0.484"
